@@ -27,11 +27,10 @@ jobs:
           pip install -r requirements.txt
           pip install pytest httpx
 
-      - name: Run preprocessing to generate model artifacts
-        run: |
-          python run_preprocessing.py
-          python run_training.py
-          python generate_artifacts.py
+      # NOTE: Skipping data pipeline steps (run_preprocessing, run_training,
+      # generate_artifacts) because the raw CSV is gitignored (453MB).
+      # All model .joblib files are committed directly to the repo so the
+      # integration tests can load them from the git checkout.
 
       - name: Run full test suite
         run: |
