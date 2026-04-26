@@ -1,8 +1,14 @@
 name: CD — Build & Deploy to GCP Cloud Run
 
 on:
+  # Trigger manually from the GitHub Actions UI when GCP is ready
+  workflow_dispatch:
+  # OR automatically when a versioned release tag is pushed (e.g. v1.0.0)
   push:
-    branches: [main]
+    tags:
+      - "v*.*.*"
+  # NOTE: Automatic deploy on push to main is intentionally disabled until
+  # GCP_PROJECT_ID and GCP_SA_KEY secrets are configured in repo Settings.
 
 env:
   PROJECT_ID: ${{ secrets.GCP_PROJECT_ID }}
