@@ -1,0 +1,6 @@
+data/
+notebooks/
+reports/
+.git
+__pycache__
+*.md
